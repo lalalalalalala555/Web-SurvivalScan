@@ -147,9 +147,30 @@ def main():
     logo()
     file_init()
     # 获取目标TXT名称
-    txt_name = str(input("请输入目标TXT文件名\nFileName >>> "))
-    dir_name = str(input("请输入需要访问的路径（无则回车）\nDirName >>> "))
-    proxy_text = str(input("请输入代理IP和端口（无则回车）\nProxy >>> "))
+def main():
+    # 创建命令行参数解析器
+    parser = argparse.ArgumentParser(description="网站存活检测")
+    # 添加参数定义
+    parser.add_argument("-if", "--input-file", 
+                        required=True, 
+                        help="目标文件(必需)")
+    parser.add_argument("-d", "--dir-name", 
+                        default="", 
+                        help="访问路径(可选，默认为当前目录)")
+    parser.add_argument("-x", "--proxy", 
+                        default=None, 
+                        help="代理信息（格式：IP:端口）")
+    # 解析命令行参数
+    args = parser.parse_args()
+    # 提取参数值
+    txt_name = args.input_file
+    dir_name = args.dir_name
+    proxy_text = args.proxy
+    
+    # 打印参数值（实际使用时替换为您的处理逻辑）
+    print(f"目标文件: {txt_name}")
+    print(f"访问路径: {dir_name if dir_name else '当前目录'}")
+    print(f"代理信息: {proxy_text if proxy_text else '无代理'}")
     if proxy_text:
         proxies = {
         "http": "http://%(proxy)s/" % {'proxy': proxy_text},
