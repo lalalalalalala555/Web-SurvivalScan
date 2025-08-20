@@ -9,7 +9,7 @@ from enum import Enum
 import os
 import time
 from bs4 import BeautifulSoup
-
+import argparse
 import Generate_Report
 
 import requests, sys, random
